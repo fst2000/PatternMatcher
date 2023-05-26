@@ -15,5 +15,6 @@ public class CharSequencePrinter
         {
             writer.print(sequence.charAt(i));
         }
+        writer.flush();
     }
 }
