@@ -2,20 +2,18 @@ public class Program
 {
     public static void main(String[] args)
     {
-        CharSequencePrinter printer = new CharSequencePrinter(System.out);
+        Printer printer = new JoinPrinter(new OutputStreamPrinter(System.out), ", ");
         String input = "1,2,a,b,c";
+
+        TextTemplate template = new MultipleTextTemplate(new TextTemplate[]
+        {
+            new ReplaceMatchTemplate(new PatternMatchTemplate("\\d+"), "int"),
+            new ReplaceMatchTemplate(new PatternMatchTemplate("[a-zA-Z]+"), "string"),
+        });
+
         new SplitStream(input, ',').read(sequence ->
         {
-            PatternMatcherStream[] patternMatchers = new PatternMatcherStream[]
-            {
-                new PatternMatcherStream(sequence, "\\d+", "int"),
-                new PatternMatcherStream(sequence, "[a-zA-Z]+", "letter")
-            };
-            for (var p : patternMatchers)
-            {
-                p.read(printer::print);
-            }
-            printer.print(",");
+            template.match(sequence, printer::print);
         });
     }
 }

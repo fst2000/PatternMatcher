@@ -1,10 +1,10 @@
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
-public class CharSequencePrinter
+public class OutputStreamPrinter implements Printer
 {
     PrintWriter writer;
-    public CharSequencePrinter(OutputStream stream)
+    public OutputStreamPrinter(OutputStream stream)
     {
         writer = new PrintWriter(stream);
 
