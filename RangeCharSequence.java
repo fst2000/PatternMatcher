@@ -20,7 +20,7 @@ public class RangeCharSequence implements CharSequence
     @Override
     public char charAt(int index)
     {
-        return sequence.charAt(index);
+        return sequence.charAt(start + index);
     }
 
     @Override
