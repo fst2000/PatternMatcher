@@ -8,15 +8,23 @@ public class Program
         Scanner s = new Scanner(System.in);
         new SplitStream(s.nextLine(), ',').read(sequence ->
         {
-            PatternMatcherStream[] patternMatchers = new PatternMatcherStream[]
+            Stream[] patternMatchers = new Stream[]
             {
-                new PatternMatcherStream(sequence, "//d+", "int"),
-                new PatternMatcherStream(sequence, "[a-zA-Z]", "letter")
+                new PatternMatcherStream(sequence, "//d+", reader ->
+                {
+                    reader.read("int");
+                }),
+                new PatternMatcherStream(sequence, "[a-zA-Z]", reader ->
+                {
+                    reader.read("letter");
+                }),
+                new PatternMatcherStream(sequence, "[.*]", new SplitStream(sequence, ','))
             };
             for (var p : patternMatchers)
             {
                 p.read(printer::print);
             }
         });
+        s.close();
     }
 }

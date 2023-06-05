@@ -5,11 +5,11 @@ public class PatternMatcherStream implements Stream
 {
     CharSequence sequence;
     String patternString;
-    String name;
-    public PatternMatcherStream(CharSequence sequence, String pattern, String name) {
+    Stream output;
+    public PatternMatcherStream(CharSequence sequence, String pattern, Stream output) {
         this.sequence = sequence;
         this.patternString = pattern;
-        this.name = name;
+        this.output = output;
     }
     @Override
     public void read(Reader reader) {
@@ -17,7 +17,7 @@ public class PatternMatcherStream implements Stream
         Matcher matcher = pattern.matcher(sequence);
         if(matcher.find())
         {
-            reader.read(name);
+            output.read(reader);
         }
     }
 }
