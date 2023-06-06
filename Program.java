@@ -6,7 +6,7 @@ public class Program
     {
         CharSequencePrinter printer = new CharSequencePrinter(System.out);
         Scanner s = new Scanner(System.in);
-        new SplitStream(s.nextLine(), ',').read(sequence ->
+        new SplitStream(reader -> reader.read(s.nextLine()), ',').read(sequence ->
         {
             Stream[] patternMatchers = new Stream[]
             {
@@ -18,7 +18,7 @@ public class Program
                 {
                     reader.read("letter");
                 }),
-                new PatternMatcherStream(sequence, "[.*]", new SplitStream(sequence, ','))
+                new PatternMatcherStream(sequence, "[.*]", new SplitStream(reader -> reader.read(sequence), ','))
             };
             for (var p : patternMatchers)
             {
