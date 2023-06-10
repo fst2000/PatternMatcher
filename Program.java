@@ -6,7 +6,8 @@ public class Program
     {
         CharSequencePrinter printer = new CharSequencePrinter(System.out);
         Scanner s = new Scanner(System.in);
-        new SplitStream(reader -> reader.read(s.nextLine()), ',').read(sequence ->
+        String text = "12312,\"gsgge\",12f,fafafaaf,123, [\"adwdawwda\", 12, 1233]";
+        new SplitStream(reader -> reader.read(text), ',').read(sequence ->
         {
             Stream[] patternMatchers = new Stream[]
             {
@@ -14,9 +15,9 @@ public class Program
                 {
                     reader.read("int");
                 }),
-                new PatternMatcherStream(sequence, "[a-zA-Z]", reader ->
+                new PatternMatcherStream(sequence, "\".*\"", reader ->
                 {
-                    reader.read("letter");
+                    reader.read("string");
                 }),
                 new PatternMatcherStream(sequence, "[.*]", new SplitStream(reader -> reader.read(sequence), ','))
             };
