@@ -1,5 +1,5 @@
 
 public interface Printer
 {
-    void print(CharSequence sequence);
+    void print(Text text);
 }

@@ -9,11 +9,11 @@ public class OutputStreamPrinter implements Printer
         writer = new PrintWriter(stream);
 
     }
-    public void print(CharSequence sequence)
+    public void print(Text text)
     {
-        for(int i = 0; i < sequence.length(); i++)
+        for(int i = 0; i < text.length(); i++)
         {
-            writer.print(sequence.charAt(i));
+            writer.print(text.at(i));
         }
         writer.flush();
     }

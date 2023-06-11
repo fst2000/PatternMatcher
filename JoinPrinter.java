@@ -2,23 +2,23 @@
 public class JoinPrinter implements Printer
 {
     Printer printer;
-    CharSequence join;
+    Text join;
     boolean hasFirst;
 
-    public JoinPrinter(Printer printer, CharSequence join)
+    public JoinPrinter(Printer printer, Text join)
     {
         this.printer = printer;
         this.join = join;
     }
 
     @Override
-    public void print(CharSequence sequence)
+    public void print(Text text)
     {
         if(hasFirst)
         {
             printer.print(join);
         }
-        printer.print(sequence);
+        printer.print(text);
         hasFirst = true;
     }
 }
