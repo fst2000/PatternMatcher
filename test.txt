@@ -1,0 +1,14 @@
+123, awdawd,  56rwaf, 812 ,   fafa          //RemoveCharStream
+123,awdawd,56rwaf,812,fafa                  //SplitStream
+
+123
+awdawd
+56rwaf
+812
+fafa                                        //MatchStream
+
+int
+text
+none
+int
+text

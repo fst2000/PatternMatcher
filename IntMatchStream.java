@@ -1,11 +1,8 @@
-public class RemoveStream implements Stream
+public class IntMatchStream implements Stream
 {
     Stream stream;
-    char removeSequence;
-    public RemoveStream(Stream stream, char removeSequence)
-    {
+    public IntMatchStream(Stream stream) {
         this.stream = stream;
-        this.removeSequence = removeSequence;
     }
     @Override
     public void read(Reader reader)
@@ -13,10 +10,14 @@ public class RemoveStream implements Stream
         stream.read(sequence ->
         {
             int length = sequence.length();
+            int count = 0;
             for(int i = 0; i < length; i++)
             {
-                if(sequence.charAt(i) != removeSequence) reader.read(sequence);
+                char c = sequence.charAt(i);
+                if(c <= 9 && c >= 0) count ++;
             }
+            if(count == length) reader.read("int");
         });
     }
+    
 }

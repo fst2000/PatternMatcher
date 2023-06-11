@@ -1,7 +1,12 @@
+./SubStream.java
 ./RangeCharSequence.java
 ./Program.java
 ./PatternMatcherStream.java
 ./Stream.java
+./JoinCharSequencePrinter.java
+./DeafultCaseStream.java
 ./Reader.java
 ./CharSequencePrinter.java
+./StreamCharSequencePrinter.java
+./RemoveStream.java
 ./SplitStream.java
