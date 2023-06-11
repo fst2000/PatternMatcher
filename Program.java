@@ -16,7 +16,7 @@ public class Program
                 new MultipleTextMap(
                     new ConditionTextMap(
                         new SymbolTextCondition(new PluralSymbolCondition(separators)),
-                        text -> new SingleTextStream(text)),
+                        SingleTextStream::new),
                     new ConditionTextMap(number, text -> new SingleTextStream(new CharSequenceText("int"))),
                     new ConditionTextMap(letter, text -> new SingleTextStream(new CharSequenceText("name")))),
                 new CharSequenceText("error"));
