@@ -1,8 +1,7 @@
-public class IntMatchStream implements Stream
+public class LetterMatchStream implements Stream
 {
     Stream stream;
-    public IntMatchStream(Stream stream)
-    {
+    public LetterMatchStream(Stream stream) {
         this.stream = stream;
     }
     @Override
@@ -15,9 +14,9 @@ public class IntMatchStream implements Stream
             for(int i = 0; i < length; i++)
             {
                 char c = sequence.charAt(i);
-                if(Character.isDigit(c)) count ++;
+                if(Character.isLetter(c)) count ++;
             }
-            if(count == length) reader.read("int");
+            if(count == length) reader.read("letter");
         });
     }
     
