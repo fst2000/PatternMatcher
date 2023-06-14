@@ -1,20 +1,20 @@
 public class MatchStream implements Stream
 {
     Stream stream;
-    Stream[] matchers;
-    public MatchStream(Stream stream, Stream... matchers)
+    Reader[] readers;
+    public MatchStream(Stream stream, Reader... readers)
     {
         this.stream = stream;
-        this.matchers = matchers;
+        this.readers = readers;
     }
     @Override
     public void read(Reader reader)
     {
         stream.read(sequence ->
         {
-            for (var m : matchers)
+            for (var r : readers)
             {
-                m.read(reader);
+                r.read(sequence);
             }
         });
     }
