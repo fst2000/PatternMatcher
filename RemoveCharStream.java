@@ -1,20 +1,19 @@
 public class RemoveCharStream implements Stream
 {
-    class RemoveAtReader implements Reader
+    class RangeReader implements Reader
     {
         Reader reader;
-        int removeAt;
-        public RemoveAtReader(Reader reader, int removeAt) {
+        int start;
+        int end;
+        public RangeReader(Reader reader, int start, int end) {
             this.reader = reader;
-            this.removeAt = removeAt;
+            this.start = start;
+            this.end = end;
         }
         @Override
         public void read(CharSequence sequence)
         {
-            reader.read(
-                new ConcatCharSequence(
-                    new RangeCharSequence(sequence, 0, removeAt),
-                    new RangeCharSequence(sequence, removeAt + 1, sequence.length())));
+            reader.read(new RangeCharSequence(sequence, start, end));
         }
         
     }
@@ -28,10 +27,15 @@ public class RemoveCharStream implements Stream
         public void read(CharSequence sequence)
         {
             int length = sequence.length();
+            int start = 0;
             for(int i = 0; i < length; i++)
             {
                 Character s = sequence.charAt(i);
-                if(s == removeCharacter) new RemoveAtReader(reader, i).read(sequence);
+                if(s == removeCharacter || i == length - 1)
+                {
+                    reader.read(new RangeCharSequence(sequence, start, i));
+                    start = i + 1;
+                }
             }
         }
         
