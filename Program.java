@@ -4,9 +4,9 @@ public class Program
     {
         CharSequencePrinter printer = new StreamCharSequencePrinter(System.out);
         CharSequencePrinter joinPrinter = new JoinCharSequencePrinter(printer, ", ");
-        String text = "1231, acaicic, a, 1, f";
-        String test = "this is test yo";
-        Stream stream = reader -> reader.read(test);
+        String text = "1231, acaicic, a, 12, ful";
+        String test = "this is test yo niga";
+        Stream stream = reader -> reader.read(text);
         Stream removeStream = new RemoveCharStream(stream, ' ');
         Stream splitStream = new SplitStream(removeStream, ',');
         Stream matchStream = new DeafultCaseStream(
@@ -15,6 +15,8 @@ public class Program
                 new AllCharsConditionReader(s -> joinPrinter.print("letter"), c -> Character.isLetter(c))
             ), "none");
         removeStream.read(printer::print);
-        joinPrinter.print("\n");
+        printer.print("\n");
+        matchStream.read(joinPrinter::print);
+        printer.print("\n");
     }
 }

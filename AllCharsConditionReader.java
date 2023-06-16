@@ -10,11 +10,11 @@ public class AllCharsConditionReader implements Reader
     public void read(CharSequence sequence)
     {
         int length = sequence.length();
-        boolean allHasCondition;
+        boolean allHasCondition = true;
         allHasCondition = length != 0;
         for(int i = 0; i < length; i++)
         {
-            allHasCondition = !condition.check(sequence.charAt(i));
+            if(!condition.check(sequence.charAt(i))) allHasCondition = false;
         }
         if(allHasCondition) reader.read(sequence);
     }
