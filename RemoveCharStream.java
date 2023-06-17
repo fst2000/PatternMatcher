@@ -33,10 +33,10 @@ public class RemoveCharStream implements Stream
                 Character s = sequence.charAt(i);
                 if(s == removeCharacter)
                 {
-                    reader.read(new RangeCharSequence(sequence, start, i));
+                    reader.read(new RangeCharSequence(sequence, start, i - 1));
                     start = i + 1;
                 }
-                else if( i == length - 1) reader.read(new RangeCharSequence(sequence, start, i + 1));
+                else if( i == length - 1) reader.read(new RangeCharSequence(sequence, start, i));
             }
         }
         

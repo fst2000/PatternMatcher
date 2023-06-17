@@ -23,10 +23,10 @@ public class SplitStream implements Stream
             {
                 if(sequence.charAt(i) == split)
                 {
-                    reader.read(new RangeCharSequence(sequence, start, i));
+                    reader.read(new RangeCharSequence(sequence, start, i - 1));
                     start = i + 1;
                 }
-                else if(i == length - 1) reader.read(new RangeCharSequence(sequence, start, i + 1));
+                else if(i == length - 1) reader.read(new RangeCharSequence(sequence, start, i));
             }
             if(start == 0) reader.read(sequence);
         });

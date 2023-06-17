@@ -14,7 +14,7 @@ public class RangeCharSequence implements CharSequence
     @Override
     public int length()
     {
-        return end - start;
+        return (end - start) + 1;
     }
 
     @Override
