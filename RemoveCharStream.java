@@ -31,11 +31,12 @@ public class RemoveCharStream implements Stream
             for(int i = 0; i < length; i++)
             {
                 Character s = sequence.charAt(i);
-                if(s == removeCharacter || i == length - 1)
+                if(s == removeCharacter)
                 {
                     reader.read(new RangeCharSequence(sequence, start, i));
                     start = i + 1;
                 }
+                else if( i == length - 1) reader.read(new RangeCharSequence(sequence, start, i + 1));
             }
         }
         

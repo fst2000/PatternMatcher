@@ -17,16 +17,16 @@ public class SplitStream implements Stream
             int length = sequence.length();
             if(length == 0)
             {
-                reader.read(sequence);
                 return;
             }
             for(int i = 0; i < length; i++)
             {
-                if(split == sequence.charAt(i) || i + 1 == length)
+                if(sequence.charAt(i) == split)
                 {
                     reader.read(new RangeCharSequence(sequence, start, i));
                     start = i + 1;
                 }
+                else if(i == length - 1) reader.read(new RangeCharSequence(sequence, start, i + 1));
             }
             if(start == 0) reader.read(sequence);
         });
